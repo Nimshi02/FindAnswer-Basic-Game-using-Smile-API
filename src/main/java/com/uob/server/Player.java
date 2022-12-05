@@ -28,6 +28,8 @@ public class Player {
     private String username;
     private String email;
     private String password;
+    private int score;
+    private String time;
     
     /*
     *Constructor for initialize the user
@@ -41,6 +43,12 @@ public class Player {
     public Player()
     {
         
+    }
+
+    Player(String email, int score, String time) {
+        this.email=email;
+        this.score=score;
+        this.time=time;//To change body of generated methods, choose Tools | Templates.
     }
 
     /*
@@ -66,4 +74,12 @@ public class Player {
     /*
     Create the connection and save the data to the database
     */
+
+    public int getScore() {
+        return score;
+    }
+
+    public String getTime() {
+        return time;
+    }
 }

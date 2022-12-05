@@ -10,6 +10,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Implements the Service.
@@ -92,18 +94,42 @@ public class TheImplementation extends UnicastRemoteObject implements TheInterfa
     *Create the database connection and save the data to the database.
     */
     
-public void saveuser(String username,String email,String password) throws RemoteException, IOException, InterruptedException, ExecutionException, Exception
+public void saveuser(String username,String email,String password) throws RemoteException, Exception
 {
-    Connection newcon=new Connection();
-    newcon.saveDoc(username, email, password);
+    TheServer.newcon.saveDoc(username, email, password);
 }
 /*
 *Create a database connection and check if the retrived user details are equeal to the users given credentials
 */
 public boolean checkUser(String email,String password) throws Exception,RemoteException
 {
-    Connection newcon= new Connection();
-    Boolean ans=newcon.retriveDoc(email, password);
+    Boolean ans=TheServer.newcon.retriveDoc(email, password);
     return ans;
+}
+/*
+*Use the connection from the TheServer and save the details to the database. 
+*/
+public void SaveUserScore(String email,String score,String time) throws InterruptedException, ExecutionException, RemoteException
+{
+    TheServer.newcon.saveScore(email,score,time);
+}
+/*
+*Retrive the highest values from the database. 
+*/
+public String[][] getHighestScores() throws InterruptedException, ExecutionException,RemoteException
+{
+    String score[][]=new String[5][2];
+    score=TheServer.newcon.RetriveScore();
+    return score;
+}
+public String[][] getLeastTime() throws InterruptedException, ExecutionException,RemoteException
+{
+    String score[][]=new String[5][2];
+    score=TheServer.newcon.RetriveTime();
+    return score;
+}
+public String getUsersEmail() throws RemoteException
+{
+    return TheServer.newcon.getUsesEmail();
 }
 }

@@ -40,5 +40,10 @@ public interface TheInterface extends Remote {
     public void saveuser(String username, String email, String password) throws RemoteException, IOException, InterruptedException, ExecutionException, Exception;
 
     public boolean checkUser(String email, String password) throws Exception, RemoteException;
+    public String[][] getHighestScores() throws InterruptedException, ExecutionException,RemoteException;
+    public void SaveUserScore(String email,String score,String time) throws InterruptedException, ExecutionException, RemoteException;
+public String getUsersEmail() throws RemoteException;
+public String[][] getLeastTime() throws InterruptedException, ExecutionException,RemoteException;
+
 
 }
